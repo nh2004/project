@@ -8,7 +8,7 @@ import authRoutes from './routes/auth.js';
 import projectRoutes from './routes/projects.js';
 import contributorRoutes from './routes/contributors.js';
 
-dotenv.config();
+dotenv.config({ path: '../.env' });
 
 const app = express();
 const PORT = process.env.PORT || 4000;
@@ -32,7 +32,7 @@ app.get('/health', (req, res) => {
 });
 
 // Connect to MongoDB
-mongoose.connect(process.env.MONGO_URI || 'mongodb://localhost:27017/admin_app')
+mongoose.connect(process.env.MONGO_URI)
   .then(() => {
     console.log('✅ Connected to MongoDB');
     app.listen(PORT, () => {
