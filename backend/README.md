@@ -50,11 +50,11 @@ Express.js backend with MongoDB for the Admin Dashboard application.
 ## Environment Variables
 
 ```env
-MONGO_URI=mongodb://localhost:27017/admin_app
-JWT_SECRET=supersecretjwt
-CLIENT_URL=http://localhost:3000
-PORT=4000
-NODE_ENV=development
+MONGO_URI
+JWT_SECRET
+CLIENT_URL
+PORT
+NODE_ENV
 ```
 
 ## Database Models

@@ -21,12 +21,6 @@ A modern fullstack web application built with Node.js, Express, React, Tailwind 
   - Token expiration and validation
   - Seamless contributor onboarding
 
-- **Modern UI/UX**
-  - Clean, minimal design with Tailwind CSS
-  - Responsive layout for all devices
-  - Loading states and error handling
-  - Toast notifications for user feedback
-
 ## 🛠️ Tech Stack
 
 ### Backend
@@ -94,10 +88,10 @@ project/
    
    Edit `.env` file with your configuration:
    ```env
-   MONGO_URI=mongodb://localhost:27017/admin_app
+   MONGO_URI
    JWT_SECRET=your-super-secret-jwt-key-here
-   CLIENT_URL=http://localhost:3000
-   PORT=4000
+   CLIENT_URL
+   PORT
    NODE_ENV=development
    ```
 
@@ -316,4 +310,3 @@ If you encounter any issues:
 
 ---
 
-**Happy Coding! 🎉**

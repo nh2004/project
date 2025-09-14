@@ -3,6 +3,9 @@ import jwt from 'jsonwebtoken';
 import User from '../models/User.js';
 import Invite from '../models/Invite.js';
 
+import dotenv from 'dotenv';
+dotenv.config({ path: '../.env' });
+
 const generateToken = (userId) => {
   return jwt.sign({ userId }, process.env.JWT_SECRET, { expiresIn: '7d' });
 };

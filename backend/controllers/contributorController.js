@@ -2,6 +2,9 @@ import crypto from 'crypto';
 import User from '../models/User.js';
 import Invite from '../models/Invite.js';
 
+import dotenv from 'dotenv';
+dotenv.config({ path: '../.env' });
+
 export const getContributors = async (req, res) => {
   try {
     const contributors = await User.find({ role: 'contributor' })
@@ -46,7 +49,7 @@ export const inviteContributor = async (req, res) => {
     await invite.save();
 
     // Mock email by logging the invite link
-    const inviteLink = `${process.env.CLIENT_URL || 'http://localhost:3000'}/invite/${token}`;
+    const inviteLink = `${process.env.CLIENT_URL}/invite/${token}`;
     console.log('\n📧 MOCK EMAIL - Invite Link:');
     console.log(`To: ${email}`);
     console.log(`Link: ${inviteLink}`);
