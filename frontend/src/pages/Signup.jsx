@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { useToast } from '../hooks/useToast';
+import { FiUser, FiMail, FiLock, FiArrowRight } from 'react-icons/fi'; // Added icons
 
 const Signup = () => {
   const [formData, setFormData] = useState({
@@ -19,10 +20,9 @@ const Signup = () => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
-    // Clear field error when user starts typing
+    setFormData((prev) => ({ ...prev, [name]: value }));
     if (errors[name]) {
-      setErrors(prev => ({ ...prev, [name]: '' }));
+      setErrors((prev) => ({ ...prev, [name]: '' }));
     }
   };
 
@@ -30,7 +30,7 @@ const Signup = () => {
     const newErrors = {};
 
     if (!formData.name.trim()) {
-      newErrors.name = 'Name is required';
+      newErrors.name = 'Full Name is required';
     }
 
     if (!formData.email) {
@@ -56,7 +56,7 @@ const Signup = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
+
     const formErrors = validateForm();
     if (Object.keys(formErrors).length > 0) {
       setErrors(formErrors);
@@ -76,29 +76,33 @@ const Signup = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-slate-50 py-12 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-md w-full space-y-8">
-        <div>
-          <h2 className="mt-6 text-center text-3xl font-bold text-slate-900">
-            Create your account
+    <div className="min-h-screen flex items-center justify-center bg-gray-100 py-12 px-4 sm:px-6 lg:px-8">
+      <div className="max-w-md w-full space-y-8 p-10 bg-white rounded-3xl shadow-2xl">
+        <div className="text-center">
+          <h2 className="text-4xl font-extrabold text-gray-900 tracking-tight">
+            Create your account 📝
           </h2>
-          <p className="mt-2 text-center text-sm text-slate-600">
-            Or{' '}
+          <p className="mt-2 text-base text-gray-600">
+            Start your journey with us. Or{' '}
             <Link
               to="/login"
-              className="font-medium text-indigo-600 hover:text-indigo-500"
+              className="font-medium text-indigo-600 hover:text-indigo-500 transition-colors"
             >
               sign in to your existing account
             </Link>
           </p>
         </div>
-        
-        <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
-          <div className="space-y-4">
-            <div>
-              <label htmlFor="name" className="block text-sm font-medium text-slate-700">
-                Full Name
-              </label>
+
+        <form className="space-y-6" onSubmit={handleSubmit}>
+          {/* Name Input */}
+          <div>
+            <label htmlFor="name" className="sr-only">
+              Full Name
+            </label>
+            <div className="relative rounded-lg shadow-sm">
+              <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                <FiUser className="h-5 w-5 text-gray-400" aria-hidden="true" />
+              </div>
               <input
                 id="name"
                 name="name"
@@ -106,18 +110,26 @@ const Signup = () => {
                 autoComplete="name"
                 value={formData.name}
                 onChange={handleChange}
-                className={`mt-1 input ${errors.name ? 'border-red-300 focus:ring-red-500 focus:border-red-500' : ''}`}
-                placeholder="Enter your full name"
+                className={`block w-full pl-10 pr-3 py-3 border-2 rounded-lg placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 text-sm transition-colors ${
+                  errors.name ? 'border-red-500' : 'border-gray-300'
+                }`}
+                placeholder="Your full name"
               />
-              {errors.name && (
-                <p className="mt-1 text-sm text-red-600">{errors.name}</p>
-              )}
             </div>
+            {errors.name && (
+              <p className="mt-2 text-sm text-red-600">{errors.name}</p>
+            )}
+          </div>
 
-            <div>
-              <label htmlFor="email" className="block text-sm font-medium text-slate-700">
-                Email address
-              </label>
+          {/* Email Input */}
+          <div>
+            <label htmlFor="email" className="sr-only">
+              Email address
+            </label>
+            <div className="relative rounded-lg shadow-sm">
+              <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                <FiMail className="h-5 w-5 text-gray-400" aria-hidden="true" />
+              </div>
               <input
                 id="email"
                 name="email"
@@ -125,18 +137,26 @@ const Signup = () => {
                 autoComplete="email"
                 value={formData.email}
                 onChange={handleChange}
-                className={`mt-1 input ${errors.email ? 'border-red-300 focus:ring-red-500 focus:border-red-500' : ''}`}
-                placeholder="Enter your email"
+                className={`block w-full pl-10 pr-3 py-3 border-2 rounded-lg placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 text-sm transition-colors ${
+                  errors.email ? 'border-red-500' : 'border-gray-300'
+                }`}
+                placeholder="you@example.com"
               />
-              {errors.email && (
-                <p className="mt-1 text-sm text-red-600">{errors.email}</p>
-              )}
             </div>
+            {errors.email && (
+              <p className="mt-2 text-sm text-red-600">{errors.email}</p>
+            )}
+          </div>
 
-            <div>
-              <label htmlFor="password" className="block text-sm font-medium text-slate-700">
-                Password
-              </label>
+          {/* Password Input */}
+          <div>
+            <label htmlFor="password" className="sr-only">
+              Password
+            </label>
+            <div className="relative rounded-lg shadow-sm">
+              <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                <FiLock className="h-5 w-5 text-gray-400" aria-hidden="true" />
+              </div>
               <input
                 id="password"
                 name="password"
@@ -144,18 +164,26 @@ const Signup = () => {
                 autoComplete="new-password"
                 value={formData.password}
                 onChange={handleChange}
-                className={`mt-1 input ${errors.password ? 'border-red-300 focus:ring-red-500 focus:border-red-500' : ''}`}
-                placeholder="Enter your password"
+                className={`block w-full pl-10 pr-3 py-3 border-2 rounded-lg placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 text-sm transition-colors ${
+                  errors.password ? 'border-red-500' : 'border-gray-300'
+                }`}
+                placeholder="Your password"
               />
-              {errors.password && (
-                <p className="mt-1 text-sm text-red-600">{errors.password}</p>
-              )}
             </div>
+            {errors.password && (
+              <p className="mt-2 text-sm text-red-600">{errors.password}</p>
+            )}
+          </div>
 
-            <div>
-              <label htmlFor="confirmPassword" className="block text-sm font-medium text-slate-700">
-                Confirm Password
-              </label>
+          {/* Confirm Password Input */}
+          <div>
+            <label htmlFor="confirmPassword" className="sr-only">
+              Confirm Password
+            </label>
+            <div className="relative rounded-lg shadow-sm">
+              <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                <FiLock className="h-5 w-5 text-gray-400" aria-hidden="true" />
+              </div>
               <input
                 id="confirmPassword"
                 name="confirmPassword"
@@ -163,24 +191,28 @@ const Signup = () => {
                 autoComplete="new-password"
                 value={formData.confirmPassword}
                 onChange={handleChange}
-                className={`mt-1 input ${errors.confirmPassword ? 'border-red-300 focus:ring-red-500 focus:border-red-500' : ''}`}
+                className={`block w-full pl-10 pr-3 py-3 border-2 rounded-lg placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 text-sm transition-colors ${
+                  errors.confirmPassword ? 'border-red-500' : 'border-gray-300'
+                }`}
                 placeholder="Confirm your password"
               />
-              {errors.confirmPassword && (
-                <p className="mt-1 text-sm text-red-600">{errors.confirmPassword}</p>
-              )}
             </div>
+            {errors.confirmPassword && (
+              <p className="mt-2 text-sm text-red-600">{errors.confirmPassword}</p>
+            )}
           </div>
 
+          {/* Submit Button */}
           <div>
             <button
               type="submit"
               disabled={loading}
-              className={`group relative w-full flex justify-center btn btn-primary ${
-                loading ? 'opacity-50 cursor-not-allowed' : ''
+              className={`w-full flex items-center justify-center gap-x-2 px-6 py-3 border border-transparent rounded-lg shadow-lg font-bold text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition-all ${
+                loading ? 'opacity-75 cursor-not-allowed' : ''
               }`}
             >
               {loading ? 'Creating account...' : 'Create account'}
+              <FiArrowRight className="h-5 w-5" />
             </button>
           </div>
         </form>
