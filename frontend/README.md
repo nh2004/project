@@ -1,12 +1,78 @@
-# React + Vite
+# Frontend - Admin Dashboard
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+React frontend with Tailwind CSS for the Admin Dashboard application.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Modern UI**: Clean, minimal design with Tailwind CSS
+- **Authentication**: JWT cookie-based authentication
+- **Role-based Routing**: Admin/Contributor access control
+- **Responsive Design**: Works on all device sizes
+- **Form Validation**: Client-side validation with error handling
+- **Toast Notifications**: User feedback for actions
+- **Loading States**: Proper loading indicators
 
-## Expanding the ESLint configuration
+## Pages
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### Public Pages
+- **Login** (`/login`) - User authentication
+- **Signup** (`/signup`) - New user registration
+- **Accept Invite** (`/invite/:token`) - Contributor registration
+
+### Protected Pages (Admin Only)
+- **Projects** (`/projects`) - Project management dashboard
+- **Contributors** (`/contributors`) - Team member management
+
+## Components
+
+- **Navbar** - Navigation with user info and logout
+- **Loading** - Reusable loading spinner
+- **ToastContainer** - Notification system
+- **ProtectedRoute** - Route protection wrapper
+
+## Setup
+
+1. Install dependencies:
+   ```bash
+   npm install
+   ```
+
+2. Copy environment file:
+   ```bash
+   cp .env.example .env
+   ```
+
+3. Configure environment variables in `.env`
+
+4. Start development server:
+   ```bash
+   npm run dev
+   ```
+
+5. Build for production:
+   ```bash
+   npm run build
+   ```
+
+## Environment Variables
+
+```env
+VITE_API_BASE_URL=http://localhost:4000
+```
+
+## Technology Stack
+
+- **React 19** - UI framework
+- **Vite** - Build tool and dev server
+- **Tailwind CSS 3** - Utility-first CSS framework
+- **React Router** - Client-side routing
+- **React Context** - State management
+
+## Styling
+
+The application uses a modern, minimal design with:
+- Cool matte color palette (slate, indigo, teal)
+- Clean cards and forms with rounded corners
+- Subtle shadows and smooth transitions
+- Responsive grid layouts
+- Consistent spacing and typography
