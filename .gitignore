@@ -1,0 +1,50 @@
+# Node.js
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+env/
+venv/
+ENV/
+*.env
+*.venv
+
+# VS Code
+.vscode/
+.history/
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Logs
+*.log
+
+# Build output
+dist/
+build/
+out/
+
+# Environment files
+.env
+.env.*
+
+# Coverage reports
+coverage/
+*.cover
+*.coverage
+*.lcov
+
+# Misc
+*.swp
+*.swo
+.idea/
+*.bak
+*.tmp
